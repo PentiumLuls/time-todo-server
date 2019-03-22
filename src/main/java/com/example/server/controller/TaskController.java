@@ -1,7 +1,7 @@
 package com.example.server.controller;
 
-import com.example.server.repo.Project;
-import com.example.server.repo.ProjectRepository;
+import com.example.server.dto.TaskDto;
+import com.example.server.repo.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,17 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/projects")
+@RequestMapping("/tasks")
 @CrossOrigin(origins = "http://localhost:4200")
-public class ProjectController {
+public class TaskController {
 
     @Autowired
-    private ProjectRepository projectRepository;
+    private TaskRepository taskRepository;
 
     @GetMapping
-    public List<Project> getProjects() {
-        return projectRepository.findAll();
+    public List<TaskDto> getTasks() {
+        return taskRepository.findAll().stream()
+                .map(TaskDto::toDto)
+                .collect(Collectors.toList());
     }
 }
