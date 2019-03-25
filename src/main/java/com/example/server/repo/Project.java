@@ -15,12 +15,21 @@ public class Project {
 
     private String name;
     private String descriptions;
+    private int priority;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
     private Set<Task> tasks = new HashSet<>();
 
     public Project() {
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public Long getId() {

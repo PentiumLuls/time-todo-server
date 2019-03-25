@@ -50,6 +50,7 @@ public class ProjectController {
 
         proj.setDescriptions(project.getDescriptions());
         proj.setName(project.getName());
+        proj.setPriority(project.getPriority());
         projectRepository.save(proj);
         return proj;
     }
