@@ -3,7 +3,6 @@ package com.example.server.controller;
 import com.example.server.dto.TaskDto;
 import com.example.server.repo.Project;
 import com.example.server.repo.ProjectRepository;
-import com.example.server.repo.Task;
 import com.example.server.repo.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,5 +45,10 @@ public class ProjectController {
     public Project addNewProject(@RequestBody Project project) {
         projectRepository.save(project);
         return project;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProject(@PathVariable("id") Long id) {
+        projectRepository.deleteById(id);
     }
 }
