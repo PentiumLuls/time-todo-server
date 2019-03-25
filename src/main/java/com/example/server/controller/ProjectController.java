@@ -41,6 +41,19 @@ public class ProjectController {
         return null;
     }
 
+    @PutMapping("/{id}")
+    public Project updateProject(@PathVariable("id") Long id, @RequestBody Project project) {
+        Project proj = projectRepository.findById(project.getId()).orElse(null);
+        if (proj == null) {
+            return null;
+        }
+
+        proj.setDescriptions(project.getDescriptions());
+        proj.setName(project.getName());
+        projectRepository.save(proj);
+        return proj;
+    }
+
     @PostMapping
     public Project addNewProject(@RequestBody Project project) {
         projectRepository.save(project);
