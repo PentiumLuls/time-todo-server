@@ -26,16 +26,25 @@ public class ProjectController {
         return projectRepository.findAll();
     }
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    public Project getProjectByName(@PathVariable("name") String name) {
-        return projectRepository.findByName(name);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Project getProjectByName(@PathVariable("id") Long id) {
+        return projectRepository.findById(id).orElse(null);
     }
 
-    @RequestMapping(value = "/{name}/tasks", method = RequestMethod.GET)
-    public List<TaskDto> getTasksByProjectName(@PathVariable("name") String name) {
-        Project project = projectRepository.findByName(name);
-        return taskRepository.findAllByProjectId(project.getId()).stream()
-                .map(TaskDto::toDto)
-                .collect(Collectors.toList());
+    @RequestMapping(value = "/{id}/tasks", method = RequestMethod.GET)
+    public List<TaskDto> getTasksByProjectName(@PathVariable("id") Long id) {
+        Project project = projectRepository.findById(id).orElse(null);
+        if (project != null) {
+            return taskRepository.findAllByProjectId(project.getId()).stream()
+                    .map(TaskDto::toDto)
+                    .collect(Collectors.toList());
+        }
+        return null;
+    }
+
+    @PostMapping
+    public Project addNewProject(@RequestBody Project project) {
+        projectRepository.save(project);
+        return project;
     }
 }
