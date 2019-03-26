@@ -9,6 +9,7 @@ public class TaskDto {
     private String name;
     private Long projectId;
     private int priority;
+    private String expirationDate;
 
     public static Task toTask(TaskDto dto, Project project) {
         Task task = new Task();
@@ -16,6 +17,7 @@ public class TaskDto {
         task.setName(dto.getName());
         task.setProject(project);
         task.setPriority(dto.getPriority());
+        task.setExpirationDate(dto.getExpirationDate());
         return task;
     }
 
@@ -25,7 +27,16 @@ public class TaskDto {
         dto.setName(task.getName());
         dto.setProjectId(task.getProject().getId());
         dto.setPriority(task.getPriority());
+        dto.setExpirationDate(task.getExpirationDate());
         return dto;
+    }
+
+    public String getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public int getPriority() {

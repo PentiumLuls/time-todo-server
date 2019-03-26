@@ -21,7 +21,17 @@ public class Task {
 
     private int priority;
 
+    private String expirationDate;
+
     public Task() {
+    }
+
+    public String getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public int getPriority() {
