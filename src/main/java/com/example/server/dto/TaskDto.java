@@ -8,12 +8,14 @@ public class TaskDto {
     private Long id;
     private String name;
     private Long projectId;
+    private int priority;
 
     public static Task toTask(TaskDto dto, Project project) {
         Task task = new Task();
         task.setId(dto.getId());
         task.setName(dto.getName());
         task.setProject(project);
+        task.setPriority(dto.getPriority());
         return task;
     }
 
@@ -22,7 +24,16 @@ public class TaskDto {
         dto.setId(task.getId());
         dto.setName(task.getName());
         dto.setProjectId(task.getProject().getId());
+        dto.setPriority(task.getPriority());
         return dto;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public Long getId() {

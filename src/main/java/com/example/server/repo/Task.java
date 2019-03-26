@@ -19,7 +19,17 @@ public class Task {
     @NonNull
     private Project project;
 
+    private int priority;
+
     public Task() {
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public Long getId() {
