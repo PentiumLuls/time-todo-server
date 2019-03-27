@@ -19,8 +19,7 @@ public class Task {
     @NonNull
     private Project project;
 
-    @OneToOne(mappedBy = "task", cascade = CascadeType.ALL)
-    private Duration duration;
+    private String duration;
 
     private int priority;
 
@@ -29,11 +28,11 @@ public class Task {
     public Task() {
     }
 
-    public Duration getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Duration duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
