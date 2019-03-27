@@ -19,11 +19,22 @@ public class Task {
     @NonNull
     private Project project;
 
+    @OneToOne(mappedBy = "task", cascade = CascadeType.ALL)
+    private Duration duration;
+
     private int priority;
 
     private String expirationDate;
 
     public Task() {
+    }
+
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration = duration;
     }
 
     public String getExpirationDate() {
