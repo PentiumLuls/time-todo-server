@@ -23,7 +23,7 @@ public class Task {
 
     private int priority;
 
-    private String expirationDate;
+    private String startDate;
 
     public Task() {
     }
@@ -36,12 +36,12 @@ public class Task {
         this.duration = duration;
     }
 
-    public String getExpirationDate() {
-        return expirationDate;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setExpirationDate(String expirationDate) {
-        this.expirationDate = expirationDate;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
     public int getPriority() {
