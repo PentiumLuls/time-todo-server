@@ -1,7 +1,10 @@
 package com.example.server.dto;
 
 import com.example.server.repo.Project;
+import com.example.server.repo.Tag;
 import com.example.server.repo.Task;
+
+import java.util.List;
 
 public class TaskDto {
 
@@ -11,6 +14,7 @@ public class TaskDto {
     private int priority;
     private String duration;
     private String startDate;
+    private List<Tag> tags;
 
     public static Task toTask(TaskDto dto, Project project) {
         Task task = new Task();
@@ -20,6 +24,7 @@ public class TaskDto {
         task.setPriority(dto.getPriority());
         task.setStartDate(dto.getStartDate());
         task.setDuration(dto.getDuration());
+        task.setTags(dto.getTags());
         return task;
     }
 
@@ -31,7 +36,16 @@ public class TaskDto {
         dto.setPriority(task.getPriority());
         dto.setStartDate(task.getStartDate());
         dto.setDuration(task.getDuration());
+        dto.setTags(task.getTags());
         return dto;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
     public String getStartDate() {

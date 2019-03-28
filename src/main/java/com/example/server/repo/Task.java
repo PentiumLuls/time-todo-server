@@ -3,6 +3,7 @@ package com.example.server.repo;
 import lombok.NonNull;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(schema = "timemanager", name = "task")
@@ -10,6 +11,7 @@ public class Task {
 
     @Id
     @GeneratedValue
+    @Column(name = "task_id")
     private Long id;
 
     private String name;
@@ -25,7 +27,18 @@ public class Task {
 
     private String startDate;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "task")
+    private List<Tag> tags;
+
     public Task() {
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
     public String getDuration() {
