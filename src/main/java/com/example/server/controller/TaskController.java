@@ -42,6 +42,7 @@ public class TaskController {
     @PostMapping
     public TaskDto addNewTask(@RequestBody TaskDto dto) {
         Project project = projectRepository.findById(dto.getProjectId()).orElse(null);
+        System.out.println(dto.getTags());
         Task task = TaskDto.toTask(dto, project);
         taskRepository.save(task);
         return dto;

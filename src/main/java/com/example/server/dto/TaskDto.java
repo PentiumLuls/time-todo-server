@@ -4,7 +4,6 @@ import com.example.server.repo.Project;
 import com.example.server.repo.Tag;
 import com.example.server.repo.Task;
 
-import java.util.List;
 import java.util.Set;
 
 public class TaskDto {

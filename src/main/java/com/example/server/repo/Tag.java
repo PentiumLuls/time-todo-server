@@ -1,5 +1,7 @@
 package com.example.server.repo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -16,6 +18,7 @@ public class Tag {
     private String tag;
 
     @ManyToMany(mappedBy = "tags")
+    @JsonIgnore
     private Set<Task> tasks = new HashSet<>();
 
     @Override
