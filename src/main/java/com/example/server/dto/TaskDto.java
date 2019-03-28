@@ -5,6 +5,7 @@ import com.example.server.repo.Tag;
 import com.example.server.repo.Task;
 
 import java.util.List;
+import java.util.Set;
 
 public class TaskDto {
 
@@ -14,7 +15,7 @@ public class TaskDto {
     private int priority;
     private String duration;
     private String startDate;
-    private List<Tag> tags;
+    private Set<Tag> tags;
 
     public static Task toTask(TaskDto dto, Project project) {
         Task task = new Task();
@@ -40,11 +41,11 @@ public class TaskDto {
         return dto;
     }
 
-    public List<Tag> getTags() {
+    public Set<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(List<Tag> tags) {
+    public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
 
