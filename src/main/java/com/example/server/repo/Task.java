@@ -3,6 +3,9 @@ package com.example.server.repo;
 import lombok.NonNull;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(schema = "timemanager", name = "task")
@@ -25,7 +28,43 @@ public class Task {
 
     private String startDate;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            schema = "timemanager",
+            name = "task_tag",
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private Set<Tag> tags = new HashSet<>();
+
     public Task() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return priority == task.priority &&
+                Objects.equals(id, task.id) &&
+                name.equals(task.name) &&
+                project.equals(task.project) &&
+                Objects.equals(duration, task.duration) &&
+                Objects.equals(startDate, task.startDate) &&
+                Objects.equals(tags, task.tags);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, project, duration, priority, startDate, tags);
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     public String getDuration() {
